@@ -21,11 +21,11 @@ class User extends CI_Controller
 { 
     $data['judul'] = 'Profil Saya'; 
     $data['user'] = $this->ModelUser->cekData(['email' => $this->session->userdata('email')])->row_array(); 
-    $this->load->view('admin/header', $data); 
-    $this->load->view('admin/sidebar', $data); 
-    $this->load->view('admin/topbar', $data); 
+    $this->load->view('templates/header', $data); 
+    $this->load->view('templates/sidebar', $data); 
+    $this->load->view('templates/topbar', $data); 
     $this->load->view('user/index', $data); 
-    $this->load->view('admin/footer'); 
+    $this->load->view('templates/footer'); 
 } 
 
 public function anggota() 
@@ -35,11 +35,11 @@ public function anggota()
     $this->db->where('role_id', 1); 
     $data['anggota'] = $this->db->get('user')->result_array(); 
 
-    $this->load->view('admin/header', $data); 
-    $this->load->view('admin/sidebar', $data); 
-    $this->load->view('admin/topbar', $data); 
+    $this->load->view('templates/header', $data); 
+    $this->load->view('templates/sidebar', $data); 
+    $this->load->view('templates/topbar', $data); 
     $this->load->view('user/anggota', $data); 
-    $this->load->view('admin/footer'); 
+    $this->load->view('templates/footer'); 
 } 
 
 public function ubahProfil() 
@@ -52,11 +52,11 @@ public function ubahProfil()
         'required' => 'Nama tidak Boleh Kosong' 
     ]); 
     if ($this->form_validation->run() == false) { 
-        $this->load->view('admin/header', $data); 
-        $this->load->view('admin/sidebar', $data); 
-        $this->load->view('admin/topbar', $data); 
+        $this->load->view('templates/header', $data); 
+        $this->load->view('templates/sidebar', $data); 
+        $this->load->view('templates/topbar', $data); 
         $this->load->view('user/ubah-profile', $data); 
-        $this->load->view('admin/footer'); 
+        $this->load->view('templates/footer'); 
     } else { 
         $nama = $this->input->post('nama', true); 
         $email = $this->input->post('email', true); 
